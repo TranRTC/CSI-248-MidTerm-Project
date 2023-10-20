@@ -14,7 +14,7 @@ function Ratings({ratingSent, rating, handleRatingChange, averageRating, handleS
           <label>average rating: {averageRating}</label>        
           <br></br>
           <select className="form-select border border-primary text-danger" id="ratings" value={rating} onChange={handleRatingChange}>
-            <option >Choose Rating</option>
+            <option value="">Choose Rating</option>
             <option value="1">&#9733;</option>
             <option value="2">&#9733;&#9733;</option>
             <option value="3">&#9733;&#9733;&#9733;</option>

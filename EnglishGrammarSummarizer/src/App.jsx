@@ -110,6 +110,7 @@ const handleSubmitRating = (rating) => {
   // elelment need update is new rating
   const updatedRatings = detail ? [...detail.ratings, rating] : [rating];
   setRatings(updatedRatings);
+  setRating("");
 
   // this is conditional render mean use ternary operator to display the name of the betton form "send" to "sent"
   setRatingSent(true)
@@ -154,7 +155,7 @@ const handleSubmitComment = (comment) => {
 return ( 
     <div className="container" >
     
-      <h2 className="text-secondary">English Grammar Summarizer</h2>
+      <h2>English Grammar Summarizer</h2>
       <SelectLesson
         select={select}
         handleSelectChange={handleSelectChange}             

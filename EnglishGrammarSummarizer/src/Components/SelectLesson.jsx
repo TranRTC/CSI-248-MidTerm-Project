@@ -32,7 +32,8 @@ function SelectLesson({select, handleSelectChange}) {
             
             <container>
 
-                <h2>Select</h2>                
+                <h2>Select</h2>
+                <label>Topics of Grammar</label>                
                 <select className="form-select border border-primary text-danger " id="PartsOfSpeech" value={select} onChange={handleSelectChange}>
                         <option>Parts of Speech</option>
                         {

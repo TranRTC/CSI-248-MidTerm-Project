@@ -4,9 +4,12 @@ function Comments({commentSent,comment, handleCommentChange, handleSumitComment}
     return ( 
         <div className="container">
             <div>
+            <br></br>
             <h2>Comments</h2>
+            <label>Improve App with your Comments</label>
+            <br></br>
             <textarea  value={comment}
-                className="form-control border border-primary"
+                className="form-control border border-primary text-danger"
                 onChange={handleCommentChange}
                 rows="4" // Number of visible rows
                 cols="50" // Number of visible column             
