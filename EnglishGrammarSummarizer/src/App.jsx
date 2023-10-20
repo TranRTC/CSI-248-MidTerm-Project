@@ -6,7 +6,7 @@ import Ratings from "./Components/Ratings";
 import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+//===================================Testing Data===========================================
 const Lessons = [
   {
     id: 1,
@@ -42,6 +42,10 @@ const Lessons = [
   },
   // Add more lessons here
 ];
+
+
+//===============================App Component================================
+
 
 function App() {
  
@@ -91,6 +95,45 @@ const handleDetailChange = (selectedLesson) => {
 };
 
 
+
+//========================Code for Comments Component================================
+
+// declare variable to handle the array of comments of a lesson object
+const [comments, setComments] = useState();
+// declare state variable to hold the new comment if have from current lesson
+const [comment, setComment] = useState();
+// declare state variable use to change button name when comment is sent
+const [commentSent, setCommentSent] = useState(false);
+ 
+ 
+
+// store the comment input to the state variable
+const handleCommentChange = (e) => {
+  setComment(e.target.value);
+};
+
+// create handler to handle the submit comment event
+const handleSubmitComment = (comment) => {
+  // update comments
+  if (!commentSent && comment !== "") {
+
+    const updatedComments = ((comment) => 
+    // checked if lesson is selected then use spreader operator to update new comment
+      detail ? [...detail.comments, comment] : [comment]);      
+      
+    setComments(updatedComments);
+  
+      // change state of send status
+    setCommentSent(true);
+    // clear text area after sending
+    setComment(""); 
+    
+      
+  }
+
+  
+}
+
 //==========================Code for Ratings Component==============================
 
 // create state variable handle the value of rating from user's input
@@ -107,7 +150,7 @@ const [ratingSent, setRatingSent ] = useState(false);
 // create handler for the submit rating event
 const handleSubmitRating = (rating) => {
 
-  if(!ratingSent){
+  if(!ratingSent && rating !== ""){
      // use ternary operator
   // check detail varialbe if it exist mean selected then access to property .ratings
   // and add with new rating using pread opertor if "detail" is not existed then only 
@@ -129,48 +172,13 @@ const averageRating = detail
 ? detail.ratings.reduce((acc, val) => acc + val, 0) / detail.ratings.length
 : "";
 
-//========================Code for Comments Component================================
-
-// declare variable to handle the array of comments of a lesson object
-const [comments, setComments] = useState();
-// declare state variable to hold the new comment if have from current lesson
-const [comment, setComment] = useState();
-// declare state variable use to change button name when comment is sent
-const [commentSent, setCommentSent] = useState(false);
- // Create a state variable to track if a new lesson is clicked
- const [newLessonClicked, setNewLessonClicked] = useState(false);
-
-// store the comment input to the state variable
-const handleCommentChange = (e) => {
-  setComment(e.target.value);
-};
-
-// create handler to handle the submit comment event
-const handleSubmitComment = (comment) => {
-  // update comments
-  if (!commentSent) {
-
-    const updatedComments = (comment) => 
-    // checked if lesson is selected then use spreader operator to update new comment
-      (detail ? [...detail.comments, comment] : [comment]);    
-    
-    console.log(updatedComments);
-  
-    setComments(updatedComments);
-  
-      // change state of send status
-    setCommentSent(true);
-    // clear text area after sending
-    setComment(""); 
-      
-  }
-
-  
-}
+//=================Code FOr Checking Update comments & ratings)=====================
 
 useEffect(() => console.log(comments),[comments]);
 
+useEffect(() => console.log(ratings),[ratings]);
 
+//==========================================App Return===============================
 
 return ( 
     <div className="container" >
@@ -213,3 +221,5 @@ return (
 }
 
 export default App;
+
+//=====================================End=================================================
