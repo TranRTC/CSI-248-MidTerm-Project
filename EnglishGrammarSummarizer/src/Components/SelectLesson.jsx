@@ -20,20 +20,23 @@ function SelectLesson({select, handleSelectChange}) {
   
     return ( 
         <div className="container">
-            <div className="container">
+            <div>
 
-                <p>"She <strong><em>(pronoun)</em></strong> quickly <strong><em>(adverb)</em></strong> grabbed <strong><em>(verb)</em></strong> the <strong><em>(article)</em></strong> 
-                    delicious <strong><em>(adjective)</em></strong> chocolate <strong><em>(noun)</em></strong> chip <strong><em>(noun)</em></strong> cookie <strong><em>(noun)</em></strong>
-                    from <strong><em>(preposition)</em></strong> the <strong><em>(article)</em></strong> jar <strong><em>(noun)</em></strong> on <strong><em>(preposition)</em></strong>
-                    the <strong><em>(article)</em></strong> kitchen <strong><em>(noun)</em></strong> counter <strong><em>(noun)</em></strong>."
+                <br></br>
+                <p className=" container text-secondary">
+                    Parts of speech are the essential building blocks of language, 
+                    categorizing words into distinct groups such as nouns,
+                    verbs, adjectives, and more. Understanding and correctly using
+                    parts of speech is crucial for clear and precise 
+                    communication.
                 </p>
                 
             </div>           
             
-            <container>
+            <div className="container">
 
                 <h2>Select</h2>
-                <label>Topics of Grammar</label>                
+                <label htmlFor="PartsOfSpeech">Topics of Grammar</label>                
                 <select className="form-select border border-primary text-danger " id="PartsOfSpeech" value={select} onChange={handleSelectChange}>
                         <option>Parts of Speech</option>
                         {
@@ -46,8 +49,8 @@ function SelectLesson({select, handleSelectChange}) {
 
                         }
                 </select>
-                <br></br>
-                </container>           
+                
+            </div>           
            
         </div>
      );

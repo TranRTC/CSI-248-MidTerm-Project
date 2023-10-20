@@ -1,4 +1,4 @@
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ItemLesson({Lesson, onClickLesson}) {
   return (

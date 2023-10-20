@@ -1,5 +1,6 @@
 import Ratings from "./Ratings";
 import Comments from "./Comments";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DetailLesson = ({ selectedLesson }) => {
 

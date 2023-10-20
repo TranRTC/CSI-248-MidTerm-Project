@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Ratings({ratingSent, rating, handleRatingChange, averageRating, handleSubmitRating}) {
     
@@ -11,8 +11,7 @@ function Ratings({ratingSent, rating, handleRatingChange, averageRating, handleS
 
           <br></br>
           <h2>Ratings</h2>
-          <label>average rating: {averageRating}</label>        
-          <br></br>
+          <label htmlFor="ratings">average rating: {averageRating}</label>           
           <select className="form-select border border-primary text-danger" id="ratings" value={rating} onChange={handleRatingChange}>
             <option value="">Choose Rating</option>
             <option value="1">&#9733;</option>

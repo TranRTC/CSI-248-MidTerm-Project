@@ -4,6 +4,7 @@ import DetailLesson from "./Components/DetailLesson";
 import Comments from "./Components/Comments";
 import Ratings from "./Components/Ratings";
 import { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Lessons = [
@@ -85,6 +86,8 @@ const handleDetailChange = (selectedLesson) => {
   setRatingSent(false);
   // reset the button anem to "send" if it was used
   setCommentSent(false)
+  // Set "newLessonClicked" to true when a new lesson is clicked
+  
 };
 
 
@@ -104,7 +107,8 @@ const [ratingSent, setRatingSent ] = useState(false);
 // create handler for the submit rating event
 const handleSubmitRating = (rating) => {
 
-  // use ternary operator
+  if(!ratingSent){
+     // use ternary operator
   // check detail varialbe if it exist mean selected then access to property .ratings
   // and add with new rating using pread opertor if "detail" is not existed then only 
   // elelment need update is new rating
@@ -112,8 +116,11 @@ const handleSubmitRating = (rating) => {
   setRatings(updatedRatings);
   setRating("");
 
-  // this is conditional render mean use ternary operator to display the name of the betton form "send" to "sent"
+  // this is conditional render mean use ternary operator 
+  //to display the name of the betton form "send" to "sent"
   setRatingSent(true)
+  }
+   
 };
 
 // this defines the fomular calculating the average rating
@@ -130,6 +137,8 @@ const [comments, setComments] = useState();
 const [comment, setComment] = useState();
 // declare state variable use to change button name when comment is sent
 const [commentSent, setCommentSent] = useState(false);
+ // Create a state variable to track if a new lesson is clicked
+ const [newLessonClicked, setNewLessonClicked] = useState(false);
 
 // store the comment input to the state variable
 const handleCommentChange = (e) => {
@@ -139,27 +148,40 @@ const handleCommentChange = (e) => {
 // create handler to handle the submit comment event
 const handleSubmitComment = (comment) => {
   // update comments
-  const updatedComments = (comment) => 
-  // checked if lesson is selected then use spreader operator to update new comment
-    detail ? [...detail.comments, comment] : [comment];
+  if (!commentSent) {
+
+    const updatedComments = (comment) => 
+    // checked if lesson is selected then use spreader operator to update new comment
+      (detail ? [...detail.comments, comment] : [comment]);    
     
-  ;
-  setComments(updatedComments);
-  // change state of send status
-  setCommentSent(true);
-  // clear text area after sending
-  setComment("");
+    console.log(updatedComments);
+  
+    setComments(updatedComments);
+  
+      // change state of send status
+    setCommentSent(true);
+    // clear text area after sending
+    setComment(""); 
+      
+  }
+
+  
 }
+
+useEffect(() => console.log(comments),[comments]);
+
 
 
 return ( 
     <div className="container" >
     
       <h2>English Grammar Summarizer</h2>
+      
       <SelectLesson
         select={select}
         handleSelectChange={handleSelectChange}             
-      />     
+      /> 
+      <br></br>    
       
        <DisplayLessons
         Lessons={display} 

@@ -1,4 +1,4 @@
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Comments({commentSent,comment, handleCommentChange, handleSumitComment}) {
     return ( 
@@ -6,9 +6,10 @@ function Comments({commentSent,comment, handleCommentChange, handleSumitComment}
             <div>
             <br></br>
             <h2>Comments</h2>
-            <label>Improve App with your Comments</label>
+            <label htmlFor='textComment'>Improve App with your Comments</label>
             <br></br>
             <textarea  value={comment}
+                id='textComment'
                 className="form-control border border-primary text-danger"
                 onChange={handleCommentChange}
                 rows="4" // Number of visible rows
