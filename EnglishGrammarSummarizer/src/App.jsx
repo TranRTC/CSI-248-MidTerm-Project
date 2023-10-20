@@ -90,7 +90,7 @@ const handleDetailChange = (selectedLesson) => {
   setRatingSent(false);
   // reset the button anem to "send" if it was used
   setCommentSent(false)
-  // Set "newLessonClicked" to true when a new lesson is clicked
+
   
 };
 
@@ -115,7 +115,8 @@ const handleCommentChange = (e) => {
 // create handler to handle the submit comment event
 const handleSubmitComment = (comment) => {
   // update comments
-  if (!commentSent && comment !== "") {
+  // only allow update when lesson is selected, comment is not being sent and comment not emty
+  if (detail && !commentSent && comment !== "") {
 
     const updatedComments = ((comment) => 
     // checked if lesson is selected then use spreader operator to update new comment
@@ -149,8 +150,10 @@ const [ratingSent, setRatingSent ] = useState(false);
 
 // create handler for the submit rating event
 const handleSubmitRating = (rating) => {
-
-  if(!ratingSent && rating !== ""){
+  // update 
+  // only allow update ratings when 
+  // lesson is selected, rating is not being sent and rating string is not empty
+  if(detail && !ratingSent && rating !== ""){
      // use ternary operator
   // check detail varialbe if it exist mean selected then access to property .ratings
   // and add with new rating using pread opertor if "detail" is not existed then only 

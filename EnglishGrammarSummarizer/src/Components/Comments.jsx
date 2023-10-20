@@ -1,6 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Comments({commentSent,comment, handleCommentChange, handleSumitComment}) {
+
+
+
+    
     return ( 
         <div className="container">
             <div>
@@ -13,9 +17,10 @@ function Comments({commentSent,comment, handleCommentChange, handleSumitComment}
                 className="form-control border border-primary text-danger"
                 onChange={handleCommentChange}
                 rows="4" // Number of visible rows
-                cols="50" // Number of visible column             
-                
-                placeholder="Type your comment here..."                
+                cols="50" // Number of visible column
+                placeholder="Type your comment here..."   
+                 
+                             
             />
             </div>
             <div>
