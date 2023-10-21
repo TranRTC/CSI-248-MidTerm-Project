@@ -105,7 +105,7 @@ const [lessons, setLessons] = useState(Lessons);
 //========================Code for Comments Component================================
 
 // declare variable to handle the array of comments of a lesson object
-const [comments, setComments] = useState([]);
+//const [comments, setComments] = useState([]);
 // declare state variable to hold the new comment if have from current lesson
 const [comment, setComment] = useState("");
 // declare state variable use to change button name when comment is sent
@@ -124,12 +124,29 @@ const [commentSent, setCommentSent] = useState(false);
       // only allow update when lesson is selected, comment is not being sent and comment not emty
       if (detail && !commentSent && comment !== "") {
 
-        const updatedComments 
-        // checked if lesson is selected then use spreader operator to update new comment
-        = detail ? [...detail.comments, comment] : [comment];    
-          
-        setComments(updatedComments);
-      
+        const lessonIndex = lessons.findIndex((lesson) => lesson.id === detail.id);
+
+        if (lessonIndex !== -1) {
+          // Create a copy of the lessons array to avoid directly mutating state
+          const updatedLessons = [...lessons];
+    
+          // Update the comments for the selected lesson
+          updatedLessons[lessonIndex] = {
+            ...updatedLessons[lessonIndex],
+            comments: [...updatedLessons[lessonIndex].comments, comment],
+          };
+    
+          // Update the state with the updated lessons
+          setLessons(updatedLessons);
+    
+          // Update the detail state as well
+          const updatedDetail = {
+            ...detail,
+            comments: [...detail.comments, comment],
+          };
+          setDetail(updatedDetail);
+
+        }
           // change state of send status
         setCommentSent(true);
         // clear text area after sending
@@ -148,11 +165,15 @@ const [commentSent, setCommentSent] = useState(false);
     const handleRatingChange = (event) => setRating(event.target.value);
 
     // create state variable to handle the array of ratings
-    const [ratings, setRatings] = useState([]);
+    //const [ratings, setRatings] = useState([]);
     const [ratingSent, setRatingSent ] = useState(false);
 
+    //==========Event Handler for Summit Ratings=======
+
     const handleSubmitRating = (rating) => {
-      // Only allow updating ratings when a lesson is selected, rating is not being sent, and the rating string is not empty
+      // Only allow updating ratings when a lesson is selected, 
+      //rating is not being sent, and the rating string is not empty
+      
       if (detail && !ratingSent && rating !== "") {
         // Find the index of the lesson in the lessons array based on the detail.id
         const lessonIndex = lessons.findIndex((lesson) => lesson.id === detail.id);
@@ -172,13 +193,15 @@ const [commentSent, setCommentSent] = useState(false);
           setLessons(updatedLessons);
 
 
-          //================update detail=============
+          //================update detail===============
+
           const updatedDetail = {
             ...detail,
             ratings: [...detail.ratings, parseInt(rating)],
           };
           setDetail(updatedDetail);
-          //========================================
+
+          //============================================
 
         }
 
@@ -197,8 +220,6 @@ const [commentSent, setCommentSent] = useState(false);
 const averageRating = detail
 ? (detail.ratings.reduce((acc, val) => acc + val, 0) / detail.ratings.length).toFixed(1)
 : "";
-
-//=================Code FOr Checking Update comments & ratings)=====================
 
 
 //==========================================App Return===============================
@@ -240,8 +261,7 @@ return (
         averageRating={averageRating}
         handleSubmitRating={handleSubmitRating}
         ratingSent={ratingSent}
-      />
-      
+      />      
      
     </div>
    );
